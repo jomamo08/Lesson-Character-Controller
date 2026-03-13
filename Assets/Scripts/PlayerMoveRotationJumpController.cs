@@ -42,11 +42,11 @@ public class PlayerMoveRotationJumpController : MonoBehaviour
         // LEER INPUT
         ReadInput();
 
-        // FÍSICAS (saltar, gravedad, evitar doble salto...)
+        // Fï¿½SICAS (saltar, gravedad, evitar doble salto...)
         HandleGroundedAndJump();
         ApplyGravity();
 
-        // ROTACIÓN Y MOVIMIENTO
+        // ROTACIï¿½N Y MOVIMIENTO
         RotatePlayer();
         MovePlayer();
         
@@ -82,22 +82,18 @@ public class PlayerMoveRotationJumpController : MonoBehaviour
     void RotatePlayer()
     {
         float rotationAxis = inputMovement.x;
-        //¿En qué eje rotar? (0,1,0), ¿Cuánto? léido x * velocidad de rotation * delta de tiempo
+        //ï¿½En quï¿½ eje rotar? (0,1,0), ï¿½Cuï¿½nto? lï¿½ido x * velocidad de rotation * delta de tiempo
         controller.transform.Rotate(Vector3.up * rotationAxis * rotSpeed * Time.deltaTime);
     }
 
-    void MovePlayer()
-    {
-        float forwardAxis = inputMovement.y;
+   void MovePlayer()
+{
+    Vector3 localMove = new Vector3(inputMovement.x, 0f, inputMovement.y);
 
-        Vector3 localMove = new Vector3(forwardAxis, 0f, 0f);
+    Vector3 worldMove = transform.TransformDirection(localMove) * speed;
 
-        Vector3 worldMove = transform.TransformDirection(localMove) * speed;
+    worldMove.y = verticalVelociy;
 
-        worldMove.y = verticalVelociy;
-
-        controller.Move(worldMove * Time.deltaTime);
-
-    }
-
+    controller.Move(worldMove * Time.deltaTime);
+}
 }

@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class RaycastController : MonoBehaviour
 {
     private Ray ray;
-
     RaycastHit infoHit;
 
     PlayerInput input;
@@ -17,24 +16,22 @@ public class RaycastController : MonoBehaviour
         input = GetComponentInParent<PlayerInput>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //ray.origin = transform.position;
-        //ray.direction = transform.TransformDirection(Vector3.right);
-
         Vector2 mousePosition = input.actions["MousePosition"].ReadValue<Vector2>();
+
         ray = myCamera.ScreenPointToRay(mousePosition);
 
-        float raycastLength = 1f;
+        float raycastLength = 3f;
 
         Debug.DrawRay(ray.origin, ray.direction * raycastLength, Color.yellow);
 
-        if(Physics.Raycast(ray, out infoHit, raycastLength))
+        if (Physics.Raycast(ray, out infoHit, raycastLength))
         {
-            Debug.Log("Estas tocando un objeto con Collider " + infoHit.collider.gameObject.tag);
-            Debug.Log("A distancia " + infoHit.distance.ToString());
-            infoHit.collider.SendMessage("ActivateObject", true, SendMessageOptions.DontRequireReceiver);
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                infoHit.collider.SendMessage("ActivateObject", SendMessageOptions.DontRequireReceiver);
+            }
         }
     }
 }

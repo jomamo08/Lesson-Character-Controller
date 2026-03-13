@@ -41,7 +41,7 @@ public class PlayerFPSController : MonoBehaviour
         // LEER INPUT
         ReadInput();
 
-        // FÍSICAS (saltar, gravedad, evitar doble salto...)
+        // Fï¿½SICAS (saltar, gravedad, evitar doble salto...)
         HandleGroundedAndJump();
         ApplyGravity();
 
@@ -75,10 +75,12 @@ public class PlayerFPSController : MonoBehaviour
     void RotatePlayer()
     {
         float rotationAxis = inputMovement.x;
-        //¿En qué eje rotar? (0,1,0), ¿Cuánto? léido x * velocidad de rotation * delta de tiempo
+        //ï¿½En quï¿½ eje rotar? (0,1,0), ï¿½Cuï¿½nto? lï¿½ido x * velocidad de rotation * delta de tiempo
         controller.transform.Rotate(Vector3.up * rotationAxis * rotSpeed * Time.deltaTime);
     }
-    void MovePlayer()
+  
+ void MovePlayer()
+
     {
         Vector3 localMove = new Vector3(inputMovement.y, 0f, inputMovement.x);
 

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CameraControllerFPS : MonoBehaviour
 {
-    [Header("Parámetros")]
+    [Header("Parï¿½metros")]
     [SerializeField] private float sensitivity = 2f;
     [SerializeField] private float xRotation = 0f;
 
@@ -22,7 +22,7 @@ public class CameraControllerFPS : MonoBehaviour
     void Update()
     {
 
-        //Del input, necesitamos obtener la posición del ratón.
+        //Del input, necesitamos obtener la posiciï¿½n del ratï¿½n.
         Vector2 mouseMovement = input.actions["Look"].ReadValue<Vector2>() * sensitivity;
         Debug.Log(mouseMovement);
         xRotation -= mouseMovement.y;
